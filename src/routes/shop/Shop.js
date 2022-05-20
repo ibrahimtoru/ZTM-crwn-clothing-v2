@@ -1,17 +1,21 @@
-import { useContext } from "react";
+import { Routes, Route } from "react-router-dom";
+import CategoriesPreview from "../categories-preview/CategoriesPreview";
+import Category from "../../routes/category/Category";
 
-import { ProductsContext } from "../../contexts/product-context";
-import ProductCard from "../../components/product-card/ProductCard";
 import "./shop.scss";
 
 const Shop = () => {
-  const { products } = useContext(ProductsContext);
+  // function toTitleCase(str) {
+  //   return str.replace(/\w\S*/g, function (txt) {
+  //     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  //   });
+  // }
+
   return (
-    <div className="products-container">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
+    <Routes>
+      <Route index element={<CategoriesPreview />} />
+      <Route path=":category" element={<Category />} />
+    </Routes>
   );
 };
 
