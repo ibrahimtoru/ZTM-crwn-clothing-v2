@@ -6,7 +6,8 @@ const Home = () => {
   return (
     <div>
       <Directory />
-      <Outlet />
+      <Outlet />{" "}
+      {/* for nested routes. it is where nested matched paths wiil be rendered */}
     </div>
   );
 };
