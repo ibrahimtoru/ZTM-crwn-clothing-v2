@@ -71,6 +71,20 @@ export const getCategoriesAndDocuments = async () => {
   }, {});
 
   return categoryMap;
+
+  /* 
+  it will return a structure like the following
+  {
+    hats:{
+      title: 'Hats',
+      items: [{},{}]
+    },
+    sneskers:{
+      title: 'sneakers',
+      items: [{}{}]
+    }
+  }
+  */
 };
 
 export const createUserDocumentFromAuth = async (
@@ -116,5 +130,6 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 
 export const signOutUser = async () => await signOut(auth);
 
+// continuesly listens to auth state changes
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
