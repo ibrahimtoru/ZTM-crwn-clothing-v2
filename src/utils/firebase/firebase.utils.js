@@ -14,7 +14,7 @@ import {
   getDoc,
   setDoc,
   collection,
-  writeBatch,
+  // writeBatch,
   query,
   getDocs,
 } from "firebase/firestore";
@@ -42,6 +42,8 @@ export const signInWithGooglePopup = () =>
 
 export const db = getFirestore();
 
+/* 
+// to export our shop data to firebase
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd,
@@ -57,20 +59,17 @@ export const addCollectionAndDocuments = async (
 
   await batch.commit();
   console.log("done");
+
+  // we need to call this function with the data to export, addCollectionAndDocuments("categories", shopData);
 };
+ */
 
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-
-  return categoryMap;
+  return querySnapshot.docs.map((docSnapShot) => docSnapShot.data());
 
   /* 
   it will return a structure like the following
